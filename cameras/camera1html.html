@@ -145,9 +145,16 @@
             display: flex;
             flex-wrap: nowrap;
             line-height: 22px;
-            margin: 5px 0
+            margin: 5px 0;
         }
-
+        .input-group#set-reg-group {
+            flex-wrap: wrap;
+            .buttonquidepasse {
+                display: flex;
+                width: 100%;
+                justify-content: right;
+            }
+        }
         .input-group>label {
             display: inline-block;
             padding-right: 10px;
@@ -415,7 +422,7 @@
 </header>
 <section class="main">
     <section id="buttons">
-        <button id="get-still">Photo instantan&#xE9;e</button>
+        <button id="get-still">Photo</button>
         <button id="toggle-stream">Lancer le Stream</button>
     </section>
     <div id="logo">
@@ -629,11 +636,11 @@
 
                 <div style="margin-top: 20px;"><span style="font-weight: bold; font-size: larger">Param&#xE8;tres Avanc&#xE9;s</span></div>
                 <hr style="width:100%">
-                <label for="nav-toggle-reg" class="toggle-section-label">&#9776;&nbsp;&nbsp;Register Get/Set</label><input type="checkbox" id="nav-toggle-reg" class="hidden toggle-section-button" checked="checked">
+                <label for="nav-toggle-reg" class="toggle-section-label">&#9776;&nbsp;&nbsp;Registre</label><input type="checkbox" id="nav-toggle-reg" class="hidden toggle-section-button" checked="checked">
                 <section class="toggle-section">
                     <!--h4>Set Register</h4-->
                     <div class="input-group" id="set-reg-group">
-                        <label for="set-reg">Reg, Mask, Value</label>
+                        <label for="set-reg">Reg, Masque, Valeur</label>
                         <div class="text">
                             <input id="reg-addr" type="text" minlength="4" maxlength="6" size="6" value="0x111">
                         </div>
@@ -643,22 +650,23 @@
                         <div class="text">
                             <input id="reg-value" type="text" minlength="4" maxlength="4" size="4" value="0x80">
                         </div>
-                        <button class="inline-button" id="set-reg">Set</button>
+
+                        <div class="buttonquidepasse"><button class="inline-button" id="set-reg">Appliquer</button></div>
                     </div>
                     <hr style="width:50%">
                     <!--h4>Get Register</h4-->
                     <div class="input-group" id="get-reg-group">
-                        <label for="get-reg">Reg, Mask</label>
+                        <label for="get-reg">Reg, Masque</label>
                         <div class="text">
                             <input id="get-reg-addr" type="text" minlength="4" maxlength="6" size="6" value="0x111">
                         </div>
                         <div class="text">
                             <input id="get-reg-mask" type="text" minlength="4" maxlength="6" size="6" value="0x80">
                         </div>
-                        <button class="inline-button" id="get-reg">Get</button>
+                        <button class="inline-button" id="get-reg">Calculer</button>
                     </div>
                     <div class="input-group">
-                        <label for="get-reg-value">Value</label>
+                        <label for="get-reg-value">Valeur</label>
                         <div class="text">
                             <span id="get-reg-value">0x1234</span>
                         </div>
@@ -676,11 +684,11 @@
 
                 </section>
                 <hr style="width:100%">
-                <label for="nav-toggle-win" class="toggle-section-label">&#9776;&nbsp;&nbsp;Window</label><input type="checkbox" id="nav-toggle-win" class="hidden toggle-section-button" checked="checked">
+                <label for="nav-toggle-win" class="toggle-section-label">&#9776;&nbsp;&nbsp;Fen&#xEA;tre</label><input type="checkbox" id="nav-toggle-win" class="hidden toggle-section-button" checked="checked">
                 <section class="toggle-section">
 
                     <div class="input-group">
-                        <label for="start-x">Sensor Resolution</label><select id="start-x">
+                        <label for="start-x">Resolution du capteur</label><select id="start-x">
                         <option value="2">CIF (400x296)</option>
                         <option value="1">SVGA (800x600)</option>
                         <option value="0" selected="selected">UXGA (1600x1200)</option>
@@ -688,7 +696,7 @@
                     </div>
 
                     <div class="input-group" id="set-offset-res-group">
-                        <label for="offset-x">Offset</label>
+                        <label for="offset-x">D&#xE9;calage</label>
                         <div class="text">
                             X:<input id="offset-x" type="text" minlength="1" maxlength="3" size="6" value="400">
                         </div>
@@ -697,7 +705,7 @@
                         </div>
                     </div>
                     <div class="input-group" id="set-total-res-group">
-                        <label for="total-x">Window Size</label>
+                        <label for="total-x">Taille de la fen&#xEA;tre</label>
                         <div class="text">
                             X:<input id="total-x" type="text" minlength="1" maxlength="4" size="6" value="800">
                         </div>
@@ -706,7 +714,7 @@
                         </div>
                     </div>
                     <div class="input-group" id="set-output-res-group">
-                        <label for="output-x">Output Size</label>
+                        <label for="output-x">Taille du retour</label>
                         <div class="text">
                             X:<input id="output-x" type="text" minlength="1" maxlength="4" size="6" value="320">
                         </div>
@@ -714,7 +722,7 @@
                             Y:<input id="output-y" type="text" minlength="1" maxlength="4" size="6" value="240">
                         </div>
                     </div>
-                    <button id="set-resolution">Set Resolution</button>
+                    <button id="set-resolution">Appliquer</button>
                 </section>
 
 
@@ -1041,7 +1049,7 @@
         const startStream = () => {
             view.src = `${streamUrl}/stream`
             show(viewContainer)
-            streamButton.innerHTML = 'Arrêter le Stream'
+            streamButton.innerHTML = "Arr\u00eater le Stream"
         }
 
         // Attach actions to buttons
@@ -1057,7 +1065,7 @@
         }
 
         streamButton.onclick = () => {
-            const streamEnabled = streamButton.innerHTML === 'Arrêter le Stream'
+            const streamEnabled = streamButton.innerHTML === "Arr\u00eater le Stream"
             if (streamEnabled) {
                 stopStream()
             } else {
