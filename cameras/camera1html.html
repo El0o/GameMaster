@@ -60,12 +60,14 @@
             border-radius: 4px;
             margin-top: -10px;
             margin-right: 10px;
+            width: fit-content;
         }
 
         #content {
             display: flex;
             flex-wrap: wrap;
-            align-items: stretch
+            align-items: stretch;
+            width: fit-content;
         }
 
         figure {
@@ -147,18 +149,15 @@
             line-height: 22px;
             margin: 5px 0;
         }
-        .input-group#set-reg-group {
-            flex-wrap: wrap;
-            .buttonquidepasse {
-                display: flex;
-                width: 100%;
-                justify-content: right;
-            }
+
+        #set-reg-group>label, #get-reg-group>label {
+            min-width: 35%;
         }
+
         .input-group>label {
             display: inline-block;
             padding-right: 10px;
-            min-width: 47%
+            min-width: 40%
         }
 
         .input-group input,.input-group select {
@@ -650,8 +649,8 @@
                         <div class="text">
                             <input id="reg-value" type="text" minlength="4" maxlength="4" size="4" value="0x80">
                         </div>
-
-                        <div class="buttonquidepasse"><button class="inline-button" id="set-reg">Appliquer</button></div>
+                        <span></span>
+                        <button class="inline-button" id="set-reg">Appliquer</button>
                     </div>
                     <hr style="width:50%">
                     <!--h4>Get Register</h4-->
