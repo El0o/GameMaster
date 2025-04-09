@@ -150,8 +150,8 @@
             margin: 5px 0;
         }
 
-        #set-reg-group>label, #get-reg-group>label {
-            min-width: 35%;
+        #set-reg-group, #get-reg-group {
+            align-items: center;
         }
 
         .input-group>label {
@@ -639,17 +639,18 @@
                 <section class="toggle-section">
                     <!--h4>Set Register</h4-->
                     <div class="input-group" id="set-reg-group">
-                        <label for="set-reg">Reg, Masque, Valeur</label>
-                        <div class="text">
-                            <input id="reg-addr" type="text" minlength="4" maxlength="6" size="6" value="0x111">
+                        <label for="set-reg">Reg<br/> Masque <br/> Valeur</label>
+                        <div>
+                            <div class="text">
+                                <input id="reg-addr" type="text" minlength="4" maxlength="6" size="6" value="0x111" style="width: 85%">
+                            </div>
+                            <div class="text">
+                                <input id="reg-mask" type="text" minlength="4" maxlength="4" size="4" value="0x80" style="width: 85%">
+                            </div>
+                            <div class="text">
+                                <input id="reg-value" type="text" minlength="4" maxlength="4" size="4" value="0x80" style="width: 85%">
+                            </div>
                         </div>
-                        <div class="text">
-                            <input id="reg-mask" type="text" minlength="4" maxlength="4" size="4" value="0x80">
-                        </div>
-                        <div class="text">
-                            <input id="reg-value" type="text" minlength="4" maxlength="4" size="4" value="0x80">
-                        </div>
-                        <span></span>
                         <button class="inline-button" id="set-reg">Appliquer</button>
                     </div>
                     <hr style="width:50%">
